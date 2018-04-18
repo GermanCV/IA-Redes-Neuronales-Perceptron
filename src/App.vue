@@ -42,6 +42,7 @@ export default {
       justify-content: center;
       align-items: center;
       color: var(--primary-color-text);
+      box-shadow: rgba(0, 0, 0, .30) 1px 3px 6px, rgba(0, 0, 0, .15) 1px 1px 2px;
     }
     .app-menu {
       grid-area: aside;

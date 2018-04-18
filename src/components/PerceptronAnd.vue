@@ -45,12 +45,10 @@
     },
     data: () => ({
       x: [
-        [5, -1, 1],
-        [2, 6, 1],
-        [3, 3, 1],
-        [2, 1, -1],
-        [-1, 1, -1],
-        [1, -2, -1],
+        [0, 0, 0],
+        [0, 1, 0],
+        [1, 0, 0],
+        [1, 1, 1],
       ],
       Wi: [Math.random(), Math.random()],
       biasi: Math.random(),
@@ -70,7 +68,7 @@
         if (result >= 0) {
           a = 1;
         } else {
-          a = -1;
+          a = 0;
         }
         this.result = a;
       },
@@ -90,7 +88,7 @@
               if (temp >= 0) {
                 this.a = 1;
               } else {
-                this.a = -1;
+                this.a = 0;
               }
               this.e = x[2] - this.a;
               this.iterations[iteration].pesos.push({
@@ -107,7 +105,7 @@
                 if (temp1 >= 0) {
                   this.a = 1;
                 } else {
-                  this.a = -1;
+                  this.a = 0;
                 }
                 this.biasi = this.biasi;
               }
