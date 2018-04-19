@@ -27,6 +27,7 @@ module.exports = {
     "no-restricted-syntax": 0,
     "no-param-reassign":0,
     "no-constant-condition":0,
+    "object-shorthand": 0,
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',

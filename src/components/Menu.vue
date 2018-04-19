@@ -14,11 +14,11 @@
     data: () => ({
       menu: [
         { path: '/', name: 'Home', icon: 'home' },
-        { path: '/perceptron', name: 'Perceptron - E1', icon: 'accessibility' },
-        { path: '/perceptron-and', name: 'Perceptron - AND', icon: 'accessibility' },
-        { path: '/perceptron-or', name: 'Perceptron - OR', icon: 'history' },
-        { path: '/perceptron-caracteres', name: 'Perceptron - Caracteres', icon: 'list' },
-        { path: '/app/setting', name: 'Algoritmo 4', icon: 'phone' },
+        { path: '/perceptron', name: 'Perceptron - E1', icon: 'ac_unit' },
+        { path: '/perceptron-and', name: 'Perceptron - AND', icon: 'ac_unit' },
+        { path: '/perceptron-or', name: 'Perceptron - OR', icon: 'ac_unit' },
+        { path: '/perceptron-caracteres-0-9', name: 'Perceptron - Caracteres: 0-9', icon: 'ac_unit' },
+        { path: '/perceptron-caracteres-a-z', name: 'Perceptron - Caracteres: A-Z', icon: 'ac_unit' },
         { path: '/login', name: 'salir', icon: 'power_settings_new' },
       ],
     }),

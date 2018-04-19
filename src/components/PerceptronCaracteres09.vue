@@ -1,10 +1,10 @@
 <template lang='pug'>
   div.container
     div.container-iteration
-      h1.title Perceptron  - total Bist {{iterations.length}}
+      h1.title Total de Neuronas: {{iterations.length}}
       div.scroll
         div.iteration__item(v-for="(item,i) in iterations" :key="i")
-          h2  Bit {{i + 1}}
+          h2  Neurona {{i + 1}}
           div.item__pesos(v-for="(peso, i) in item.pesos" :key="i")
             p Peso {{i+1}} : {{item.pesos[i]}}
             div.peso__ajuste(v-for="(ajuste,a) in peso.ajuste" :key="a")
@@ -14,12 +14,10 @@
     div.container-prueba
       h1.title Neurona entrenada
       div.entrada-x
-        h1.variable  X
-          span.igual =
         div.entrada
-          div.container_x(v-for="(x,i) in X" :key="i" v-on:click="selectV(x, i+1)")
-            div.btn-container(v-for="(btn,i1) in x" :key="i1")
-              div.btn {{btn}}
+          div.container_x
+            div.btn-container(v-for="(x,i) in inputs" :key="i" v-on:click="selectV(x, i)" :class="{ 'active-focus': isActiveFocus[i] }")
+              div.btn
       div.container-eval
         div.container-input
           div.input {{select}}
@@ -68,17 +66,28 @@
       a: null,
       e: null,
       iterations: [],
-      x: null,
+      inputs: [1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1],
+      isActiveFocus: [true, true, true, true, false, true, true,
+        false, true, true, false, true, true, true, true],
       result: null,
       resultO: null,
       result1: null,
-      select: null,
+      select: 'TEST: ',
+      history: [],
     }),
     methods: {
-      selectV(items, index) {
-        this.select = `Fila: ${index}`;
-        this.result = null;
-        this.x = items;
+      selectV(x, i) {
+        if (x === 0) {
+          this.isActiveFocus[i] = true;
+          this.inputs[i] = 1;
+          this.inputs.push();
+          delete this.inputs[15];
+        } else {
+          this.inputs[i] = 0;
+          this.isActiveFocus[i] = false;
+          this.inputs.push();
+          delete this.inputs[15];
+        }
       },
       eval() {
         let a = null;
@@ -88,9 +97,9 @@
         for (const bits in this.Wi) {
           if (Object.prototype.hasOwnProperty.call(this.Wi, bits)) {
             let acum = 0;
-            for (let item = 0; item < this.x.length; item += 1) {
+            for (let item = 0; item < this.inputs.length; item += 1) {
               const pesos = this.Wi[bits][item];
-              acum += (this.x[item] * pesos);
+              acum += (this.inputs[item] * pesos);
             }
             const result = acum + this.biasi[bits];
             if (result >= 0) {
@@ -231,34 +240,28 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        .variable {
-          font-size: 25px;
-          color: var(--primary-color);
-          margin: 5px;
-          .igual {
-            margin: 10px;
-          }
-        }
         .container_x {
+          background: var(--secondary-color);
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 5px 0;
+          width: 130px;
+          border-radius: 4px;
           .btn-container {
-            background: var(--secondary-color-dark);
-            border: 0.001em solid var(--primary-color);
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-            .btn {
-              width: 25px;
-              height: 25px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover {
+              cursor: pointer;
+              box-shadow: rgba(0, 0, 0, .5) 0 2px 6px 1px;
+              background: var(--primary-color-dark);
+              color: white;
+              font-weight: bold;
             }
-          }
-          &:hover {
-            cursor: pointer;
-            box-shadow: rgba(0, 0, 0, .4) 0px 0 16px;
-            color: white;
-            font-weight: bold;
           }
         }
       }
@@ -319,6 +322,9 @@
     }
   }
 
+  .active-focus{
+    background: var(--primary-color-dark);
+  }
   ::-webkit-scrollbar {
     width: 7px;
     height: 7px;
